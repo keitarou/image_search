@@ -18,6 +18,11 @@ class ImageSearch
     end
     json = open(query).read()
     hash = JSON.parse(json)
-    OpenStruct.new(hash["responseData"]["results"])
+
+    returnData = []
+    hash["responseData"]["results"].each do |data|
+      returnData.push OpenStruct.new(data)
+    end
+    return returnData
   end
 end
